@@ -1,3 +1,6 @@
+const Redux = require('redux');
+const { createStore, combineReducers } = Redux; 
+
 // Arrow Function
 // Nome: criarContrato
 // Recebe: Nome e Valor
@@ -88,3 +91,42 @@ const contratosReducer = (contratos = [], acao) => {
 
     return contratos;
 }
+
+
+const todosOsReducers = combineReducers({
+    historicoDePedidosCashback: historicoDePedidosCashbackReducer,
+    caixa: caixaReducer,
+    contratos: contratosReducer
+})
+
+const store = createStore(todosOsReducers);
+
+console.log(store.getState())
+
+// Criar contrato para o José
+const acaoContratoJose = criarContrato('José', 50);
+store.dispatch(acaoContratoJose);
+console.log(store.getState())
+
+
+// Criar o contrato para a Maria
+const acaoContratoMaria = criarContrato('Maria', 50);
+store.dispatch(acaoContratoMaria);
+console.log(store.getState());
+
+
+// Pedido de cashback para a Maria de 10
+const acaoCashbackMaria = solicitarCashback('Maria', 10);
+store.dispatch(acaoCashbackMaria);
+console.log(store.getState());
+
+// Pedido de cashback para p José de 20
+const acaoCashbackJose = solicitarCashback('José', 20);
+store.dispatch(acaoCashbackJose);
+console.log(store.getState());
+
+
+// Cancelar contrato da Maria
+const acaoCancelarContratoMaria = cancelarContrato('Maria');
+store.dispatch(acaoCancelarContratoMaria);
+console.log(store.getState());
