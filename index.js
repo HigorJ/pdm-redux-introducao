@@ -128,5 +128,5 @@ console.log(store.getState());
 
 // Cancelar contrato da Maria
 const acaoCancelarContratoMaria = cancelarContrato('Maria');
-store.dispatch(acaoCancelarContratoMaria);
+store.dispatch(cancelarContrato('Maria'));
 console.log(store.getState());
